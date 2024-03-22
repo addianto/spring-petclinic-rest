@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-configmap
+  namespace: spring-petclinic-rest
+  labels:
+    environment: pulaumerah
+data:
+  POSTGRES_DB: ""
+  POSTGRES_USER: ""
+  POSTGRES_PASSWORD: ""

@@ -4,7 +4,7 @@ kind: Namespace
 metadata:
   name: spring-petclinic-rest
   labels:
-    name: spring-petclinic-rest
+    environment: pulaumerah
 
 # Notes:
 #

@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postgres-persistentvolumeclaim
+  namespace: spring-petclinic-rest
+  labels:
+    environment: pulaumerah
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 512Mi
+  volumeName: postgres-persistentvolume

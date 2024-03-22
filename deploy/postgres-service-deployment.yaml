@@ -1,0 +1,48 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres-deployment
+  namespace: spring-petclinic-rest
+  labels:
+    app.kubernetes.io/name: postgres
+    app.kubernetes.io/version: "16.2-alpine"
+    app.kubernetes.io/component: database
+    app.kubernetes.io/part-of: spring-petclinic-rest
+    environment: pulaumerah
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: postgres
+  template:
+    metadata:
+      name: postgres
+      labels:
+        app.kubernetes.io/name: postgres
+        app.kubernetes.io/version: "16.2-alpine"
+        app.kubernetes.io/component: database
+        app.kubernetes.io/part-of: spring-petclinic-rest
+    spec:
+      containers:
+        - name: postgres
+          image: docker.io/library/postgres:16.2-alpine
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: postgres-configmap
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres-data
+          resources:
+            limits:
+              cpu: "1"
+              memory: 512Mi
+              ephemeral-storage: 512Mi
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: postgres-persistentvolumeclaim
+      restartPolicy: Always
