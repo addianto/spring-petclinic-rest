@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: spring-petclinic-rest
+  labels:
+    name: spring-petclinic-rest
+
+# Notes:
+#
+# - Namespaces can be used to isolate resources into a single group

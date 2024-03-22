@@ -2,7 +2,8 @@
 apiVersion: v1
 kind: PersistentVolume
 metadata:
-  name: spring-petclinic-rest-pv
+  name: pv
+  namespace: spring-petclinic-rest
 spec:
   capacity:
     storage: 512Mi
@@ -21,3 +22,17 @@ spec:
               operator: In
               values:
                 - pulaumerah
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc
+  namespace: spring-petclinic-rest
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 512Mi
+  volumeName: pv
+  storageClassName: local-storage
