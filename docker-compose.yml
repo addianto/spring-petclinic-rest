@@ -2,5 +2,7 @@
 services:
   api:
     image: docker.io/springcommunity/spring-petclinic-rest:3.2.1
+    environment:
+      PETCLINIC_SECURITY_ENABLE: true
     ports:
       - "127.0.0.1:9966:9966"
