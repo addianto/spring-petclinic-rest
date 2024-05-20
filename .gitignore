@@ -14,3 +14,4 @@ springboot-petclinic-server/
 
 # k6-related
 node_modules/
+summary.json
